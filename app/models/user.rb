@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-	before_save :doj_validate
   has_secure_password
   validates :fname, presence:true, length: { maximum: 20 }, format: {with: /\A[a-zA-Z]+(?: [a-zA-Z]+)?\z/}
   validates :lname, presence:true, length: { maximum: 20 }, format: {with: /\A[a-zA-Z]+\z/}
@@ -12,11 +11,4 @@ class User < ApplicationRecord
   validates :age, presence:true, numericality: { greater_than_or_equal_to: 18}
   validates :pincode, presence:true, length:  { minimum: 6, maximum: 10}
   validates :doj, presence:true
-  
-  
-	# def doj_validate
-	#   if (doj.present? && doj > Date.today)
-	#     errors.add(:date, 'not in past or present')
-	#   end
-	# end
 end
